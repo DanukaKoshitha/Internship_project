@@ -2,13 +2,15 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "application")
 
 public class ApplicationEntity {
@@ -17,11 +19,13 @@ public class ApplicationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long applicationId;
 
-    @Column(nullable = false)
-    private Long studentId;
+    @ManyToOne
+    @JoinColumn(name = "student_Id",nullable = false)
+    private UserEntity studentId;
 
-    @Column(nullable = false)
-    private Long postId;
+    @ManyToOne
+    @JoinColumn(name = "post_Id",nullable = false)
+    private InternshipPostEntity postId;
 
     @Column(nullable = false)
     private String status;

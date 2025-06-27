@@ -2,12 +2,15 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "internship_post")
@@ -35,4 +38,7 @@ public class InternshipPostEntity {
 
     @Column(nullable = false)
     private String createByUsername;
+
+    @OneToMany(mappedBy = "postId",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<ApplicationEntity> applicationEntities;
 }
