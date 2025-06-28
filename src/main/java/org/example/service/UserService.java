@@ -1,7 +1,11 @@
 package org.example.service;
 
-import org.apache.catalina.User;
+import org.example.dto.LoginRequest;
+import org.example.dto.UserDto;
+import org.example.entity.UserEntity;
 
 public interface UserService {
-    User addUser(User user);
+    UserEntity addUser(UserDto user);
+
+    String login(LoginRequest loginRequest);
 }
